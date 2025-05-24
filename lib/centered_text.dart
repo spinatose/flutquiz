@@ -12,7 +12,7 @@ class CenteredText extends StatelessWidget {
     return Center(
       child: Text(
         text,
-        style: const TextStyle(fontSize: 20, color: Colors.white),
+        style: const TextStyle(fontSize: 20, color: Color.fromARGB(255, 233, 147, 187)),
       ),
     );
   }
