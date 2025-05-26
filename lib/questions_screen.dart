@@ -1,28 +1,25 @@
 import 'package:flutquiz/centered_text.dart';
-import 'package:flutquiz/questions_screen.dart';
 import 'package:flutquiz/quiz_wrapper.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+class QuestionsScreen extends StatefulWidget {
+  const QuestionsScreen({super.key});
 
+  @override
+  State<QuestionsScreen> createState() => _QuestionsScreenState();
+}
+
+class _QuestionsScreenState extends State<QuestionsScreen> {
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(
-          key: const Key('quiz-logo'),
-          'assets/images/quiz-logo.png',
-          width: 300,
-          color: const Color.fromARGB(125, 255, 255, 255),
-        ),
-        const SizedBox(height: 60),
-        const CenteredText('Learn Flutter the fun way!'),
+        const CenteredText('Question 1: What is Flutter?'),
         const SizedBox(height: 10),
         OutlinedButton.icon(
           onPressed: () {
-            // Notify the parent (QuizWrapper) to show the QuestionsScreen
+                        // Notify the parent (QuizWrapper) to show the QuestionsScreen
             if (context.findAncestorStateOfType<State<QuizWrapper>>() != null) {
               (context.findAncestorStateOfType<State<QuizWrapper>>() as dynamic)
                 .setState(() {
@@ -30,7 +27,7 @@ class SplashScreen extends StatelessWidget {
               // and a method or logic to switch to QuestionsScreen
               (context.findAncestorStateOfType<State<QuizWrapper>>() as dynamic)
                 .setScreen(
-                  QuizScreen.questions,
+                  QuizScreen.splash,
                 );
               });
             }
@@ -46,13 +43,9 @@ class SplashScreen extends StatelessWidget {
               borderRadius: BorderRadius.zero,
             ),
           ),
-          icon: Icon(
-            Icons.arrow_right_alt,
-            size: 24,
-            color: const Color.fromARGB(255, 240, 237, 238),
-          ),
+          icon: Icon(Icons.arrow_right_alt, size: 24, color: const Color.fromARGB(255, 240, 237, 238)),
           label: const Text(
-            "Start Quiz",
+            "Answer",
             style: TextStyle(
               color: Color.fromARGB(255, 240, 237, 238),
               fontSize: 14,
