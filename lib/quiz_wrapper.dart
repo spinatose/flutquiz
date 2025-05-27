@@ -7,7 +7,7 @@ enum QuizScreen { splash, questions }
 class QuizWrapper extends StatefulWidget {
   final List<Color> gradientColors;
 
-  QuizWrapper({super.key, required this.gradientColors});
+  const QuizWrapper({super.key, required this.gradientColors});
 
   @override
   State<QuizWrapper> createState() => _QuizWrapperState();
