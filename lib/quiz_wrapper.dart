@@ -14,17 +14,16 @@ class QuizWrapper extends StatefulWidget {
 }
 
 class _QuizWrapperState extends State<QuizWrapper> {
-  late Widget _child;
-
-  late final QuestionsScreen questionsScreen;
-  late SplashScreen splashScreen;
+  Widget? activeScreen;
+  QuestionsScreen? questionsScreen;
+  SplashScreen? splashScreen;
 
   @override
   void initState() {
     super.initState();
     questionsScreen = QuestionsScreen(setScreen, key: Key('questions-screen'));
     splashScreen = SplashScreen(setScreen, key: Key('splash-screen'));
-    _child = splashScreen;
+    activeScreen = splashScreen;
   }
 
   @override
@@ -37,7 +36,7 @@ class _QuizWrapperState extends State<QuizWrapper> {
           end: Alignment.bottomRight,
         ),
       ),
-      child: Center(child: _child),
+      child: Center(child: activeScreen),
     );
   }
 
@@ -49,9 +48,9 @@ class _QuizWrapperState extends State<QuizWrapper> {
     }
   }
 
-  void _setChild(Widget childScreen) {
+  void _setChild(Widget? childScreen) {
     setState(() {
-      _child = childScreen;
+      activeScreen = childScreen;
     });
   }
 }
