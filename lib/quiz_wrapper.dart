@@ -2,16 +2,12 @@ import 'package:flutquiz/questions_screen.dart';
 import 'package:flutquiz/splash_screen.dart';
 import 'package:flutter/material.dart';
 
-enum QuizScreen {
-  splash,
-  questions,
-}
+enum QuizScreen { splash, questions }
 
 class QuizWrapper extends StatefulWidget {
-  final Widget child;
   final List<Color> gradientColors;
 
-  const QuizWrapper({super.key, this.child = const SplashScreen(key: Key('splash-screen')), required this.gradientColors});
+  QuizWrapper({super.key, required this.gradientColors});
 
   @override
   State<QuizWrapper> createState() => _QuizWrapperState();
@@ -19,24 +15,16 @@ class QuizWrapper extends StatefulWidget {
 
 class _QuizWrapperState extends State<QuizWrapper> {
   late Widget _child;
-  final QuestionsScreen questionsScreen = QuestionsScreen(key: Key('questions-screen'));
-  SplashScreen splashScreen = SplashScreen(key: Key('splash-screen'));  
+
+  late final QuestionsScreen questionsScreen;
+  late SplashScreen splashScreen;
 
   @override
   void initState() {
     super.initState();
-    _child = widget.child;
-    splashScreen = widget.child is SplashScreen
-        ? widget.child as SplashScreen
-        : SplashScreen(key: Key('splash-screen'));
-  }
-
-  @override
-  void didUpdateWidget(covariant QuizWrapper oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.child != oldWidget.child) {
-      _child = widget.child;
-    }
+    questionsScreen = QuestionsScreen(setScreen, key: Key('questions-screen'));
+    splashScreen = SplashScreen(setScreen, key: Key('splash-screen'));
+    _child = splashScreen;
   }
 
   @override
@@ -60,9 +48,9 @@ class _QuizWrapperState extends State<QuizWrapper> {
       _setChild(splashScreen);
     }
   }
-  
+
   void _setChild(Widget childScreen) {
-        setState(() {
+    setState(() {
       _child = childScreen;
     });
   }

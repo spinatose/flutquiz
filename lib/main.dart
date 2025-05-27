@@ -1,6 +1,4 @@
-import 'package:flutquiz/centered_text.dart';
 import 'package:flutquiz/quiz_wrapper.dart';
-import 'package:flutquiz/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

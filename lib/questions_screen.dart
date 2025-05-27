@@ -3,8 +3,8 @@ import 'package:flutquiz/quiz_wrapper.dart';
 import 'package:flutter/material.dart';
 
 class QuestionsScreen extends StatefulWidget {
-  const QuestionsScreen({super.key});
-
+  const QuestionsScreen(this.setScreen, {super.key});
+  final void Function(QuizScreen) setScreen;
   @override
   State<QuestionsScreen> createState() => _QuestionsScreenState();
 }
@@ -19,18 +19,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         const SizedBox(height: 10),
         OutlinedButton.icon(
           onPressed: () {
-                        // Notify the parent (QuizWrapper) to show the QuestionsScreen
-            if (context.findAncestorStateOfType<State<QuizWrapper>>() != null) {
-              (context.findAncestorStateOfType<State<QuizWrapper>>() as dynamic)
-                .setState(() {
-              // Assuming QuizWrapper has a variable to track the current screen
-              // and a method or logic to switch to QuestionsScreen
-              (context.findAncestorStateOfType<State<QuizWrapper>>() as dynamic)
-                .setScreen(
-                  QuizScreen.splash,
-                );
-              });
-            }
+            widget.setScreen(QuizScreen.splash);
           },
           style: OutlinedButton.styleFrom(
             foregroundColor: const Color.fromARGB(255, 240, 237, 238),

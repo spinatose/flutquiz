@@ -1,10 +1,11 @@
 import 'package:flutquiz/centered_text.dart';
-import 'package:flutquiz/questions_screen.dart';
 import 'package:flutquiz/quiz_wrapper.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+  const SplashScreen(this.setScreen, {super.key});
+
+  final void Function(QuizScreen) setScreen;
 
   @override
   Widget build(BuildContext context) {
@@ -22,18 +23,7 @@ class SplashScreen extends StatelessWidget {
         const SizedBox(height: 10),
         OutlinedButton.icon(
           onPressed: () {
-            // Notify the parent (QuizWrapper) to show the QuestionsScreen
-            if (context.findAncestorStateOfType<State<QuizWrapper>>() != null) {
-              (context.findAncestorStateOfType<State<QuizWrapper>>() as dynamic)
-                .setState(() {
-              // Assuming QuizWrapper has a variable to track the current screen
-              // and a method or logic to switch to QuestionsScreen
-              (context.findAncestorStateOfType<State<QuizWrapper>>() as dynamic)
-                .setScreen(
-                  QuizScreen.questions,
-                );
-              });
-            }
+            setScreen(QuizScreen.questions);
           },
           style: OutlinedButton.styleFrom(
             foregroundColor: const Color.fromARGB(255, 240, 237, 238),
