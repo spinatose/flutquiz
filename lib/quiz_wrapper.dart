@@ -14,17 +14,7 @@ class QuizWrapper extends StatefulWidget {
 }
 
 class _QuizWrapperState extends State<QuizWrapper> {
-  Widget? activeScreen;
-  QuestionsScreen? questionsScreen;
-  SplashScreen? splashScreen;
-
-  @override
-  void initState() {
-    super.initState();
-    questionsScreen = QuestionsScreen(setScreen, key: Key('questions-screen'));
-    splashScreen = SplashScreen(setScreen, key: Key('splash-screen'));
-    activeScreen = splashScreen;
-  }
+  QuizScreen activeScreen = QuizScreen.splash;
 
   @override
   Widget build(BuildContext context) {
@@ -36,21 +26,19 @@ class _QuizWrapperState extends State<QuizWrapper> {
           end: Alignment.bottomRight,
         ),
       ),
-      child: Center(child: activeScreen),
+      child: Center(child: (activeScreen == QuizScreen.questions)
+          ? QuestionsScreen(setScreen)
+          : SplashScreen(setScreen)),
     );
   }
 
   void setScreen(QuizScreen whichScreen) {
-    if (whichScreen == QuizScreen.questions) {
-      _setChild(questionsScreen);
-    } else if (whichScreen == QuizScreen.splash) {
-      _setChild(splashScreen);
-    }
-  }
-
-  void _setChild(Widget? childScreen) {
     setState(() {
-      activeScreen = childScreen;
+      if (whichScreen == QuizScreen.questions) {
+        activeScreen = QuizScreen.questions;
+      } else if (whichScreen == QuizScreen.splash) {
+        activeScreen = QuizScreen.splash;
+      }
     });
   }
 }
