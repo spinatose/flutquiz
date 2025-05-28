@@ -22,7 +22,7 @@ class AnswerButton extends StatelessWidget {
           color: Color.fromARGB(255, 41, 4, 100),
           width: 2,
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(40),
         ),

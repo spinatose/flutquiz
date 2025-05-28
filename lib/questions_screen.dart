@@ -1,5 +1,7 @@
 import 'package:flutquiz/answer_button.dart';
 import 'package:flutquiz/centered_text.dart';
+import 'package:flutquiz/models/data/questions.dart';
+import 'package:flutquiz/models/quizquestion.dart';
 import 'package:flutquiz/quiz_wrapper.dart';
 import 'package:flutter/material.dart';
 
@@ -13,45 +15,21 @@ class QuestionsScreen extends StatefulWidget {
 class _QuestionsScreenState extends State<QuestionsScreen> {
   @override
   Widget build(BuildContext context) {
+    final QuizQuestion currentQuestion = questions[0];
+    
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const CenteredText('Question 1: What is Flutter?'),
-        const SizedBox(height: 10),
-        AnswerButton(
-          answerText: "Answer 1",
-          buttonPressed: () {
-            widget.setScreen(QuizScreen.splash);
-          },
-        ),
-        const SizedBox(height: 10),
-        AnswerButton(
-          answerText: "Answer 2",
-          buttonPressed: () {
-            widget.setScreen(QuizScreen.splash);
-          },
-        ),
-        const SizedBox(height: 10),
-        AnswerButton(
-          answerText: "Answer 3",
-          buttonPressed: () {
-            widget.setScreen(QuizScreen.splash);
-          },
-        ),
-        const SizedBox(height: 10),
-        AnswerButton(
-          answerText: "Answer 4",
-          buttonPressed: () {
-            widget.setScreen(QuizScreen.splash);
-          },
-        ),
-        const SizedBox(height: 10),
-        AnswerButton(
-          answerText: "Answer 5",
-          buttonPressed: () {
-            widget.setScreen(QuizScreen.splash);
-          },
-        ),
+        CenteredText(currentQuestion.text),
+        ...currentQuestion.answers.expand((answer) => [
+          const SizedBox(height: 10),
+          AnswerButton(
+            answerText: answer,
+            buttonPressed: () {
+              widget.setScreen(QuizScreen.splash);
+            },
+          ),
+        ]),
       ],
     );
   }
