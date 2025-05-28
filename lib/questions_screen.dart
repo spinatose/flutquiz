@@ -1,3 +1,4 @@
+import 'package:flutquiz/answer_button.dart';
 import 'package:flutquiz/centered_text.dart';
 import 'package:flutquiz/quiz_wrapper.dart';
 import 'package:flutter/material.dart';
@@ -17,30 +18,39 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
       children: [
         const CenteredText('Question 1: What is Flutter?'),
         const SizedBox(height: 10),
-        OutlinedButton.icon(
-          onPressed: () {
+        AnswerButton(
+          answerText: "Answer 1",
+          buttonPressed: () {
             widget.setScreen(QuizScreen.splash);
           },
-          style: OutlinedButton.styleFrom(
-            foregroundColor: const Color.fromARGB(255, 240, 237, 238),
-            side: const BorderSide(
-              color: Color.fromARGB(255, 41, 4, 100),
-              width: 2,
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.zero,
-            ),
-          ),
-          icon: Icon(Icons.arrow_right_alt, size: 24, color: const Color.fromARGB(255, 240, 237, 238)),
-          label: const Text(
-            "Answer",
-            style: TextStyle(
-              color: Color.fromARGB(255, 240, 237, 238),
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+        ),
+        const SizedBox(height: 10),
+        AnswerButton(
+          answerText: "Answer 2",
+          buttonPressed: () {
+            widget.setScreen(QuizScreen.splash);
+          },
+        ),
+        const SizedBox(height: 10),
+        AnswerButton(
+          answerText: "Answer 3",
+          buttonPressed: () {
+            widget.setScreen(QuizScreen.splash);
+          },
+        ),
+        const SizedBox(height: 10),
+        AnswerButton(
+          answerText: "Answer 4",
+          buttonPressed: () {
+            widget.setScreen(QuizScreen.splash);
+          },
+        ),
+        const SizedBox(height: 10),
+        AnswerButton(
+          answerText: "Answer 5",
+          buttonPressed: () {
+            widget.setScreen(QuizScreen.splash);
+          },
         ),
       ],
     );
