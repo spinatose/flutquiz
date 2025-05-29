@@ -17,20 +17,24 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   Widget build(BuildContext context) {
     final QuizQuestion currentQuestion = questions[0];
     
-    return Column(
+    return Container(
+      padding: const EdgeInsets.all(40),
+      child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         CenteredText(currentQuestion.text),
         ...currentQuestion.answers.expand((answer) => [
-          const SizedBox(height: 10),
-          AnswerButton(
-            answerText: answer,
-            buttonPressed: () {
-              widget.setScreen(QuizScreen.splash);
-            },
-          ),
+        const SizedBox(height: 10),
+        AnswerButton(
+          answerText: answer,
+          buttonPressed: () {
+          widget.setScreen(QuizScreen.splash);
+          },
+        ),
         ]),
       ],
+      ),
     );
   }
 }
