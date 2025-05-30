@@ -1,6 +1,7 @@
 import 'package:flutquiz/centered_text.dart';
 import 'package:flutquiz/quiz_wrapper.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen(this.setScreen, {super.key});
@@ -19,7 +20,11 @@ class SplashScreen extends StatelessWidget {
           color: const Color.fromARGB(125, 255, 255, 255),
         ),
         const SizedBox(height: 60),
-        const CenteredText('Learn Flutter the fun way!'),
+        CenteredText('Learn Flutter the fun way!', style: GoogleFonts.aBeeZee(
+              color: Color.fromARGB(255, 233, 147, 187),
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),),
         const SizedBox(height: 10),
         OutlinedButton.icon(
           onPressed: () {
@@ -31,7 +36,7 @@ class SplashScreen extends StatelessWidget {
               color: Color.fromARGB(255, 41, 4, 100),
               width: 2,
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.zero,
             ),

@@ -14,6 +14,7 @@ class QuizWrapper extends StatefulWidget {
 }
 
 class _QuizWrapperState extends State<QuizWrapper> {
+  final List<String> selectedAnswers = [];
   QuizScreen activeScreen = QuizScreen.splash;
 
   @override
@@ -27,9 +28,13 @@ class _QuizWrapperState extends State<QuizWrapper> {
         ),
       ),
       child: Center(child: (activeScreen == QuizScreen.questions)
-          ? QuestionsScreen(setScreen)
+          ? QuestionsScreen(setScreen, chooseAnswer)
           : SplashScreen(setScreen)),
     );
+  }
+
+  void chooseAnswer(String answer) {
+    selectedAnswers.add(answer);
   }
 
   void setScreen(QuizScreen whichScreen) {
