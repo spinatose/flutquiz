@@ -12,7 +12,9 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int correctCount = selectedAnswers.where((a) => correctAnswers.contains(a)).length;
+    final int correctCount = List.generate(selectedAnswers.length, (i) => i)
+      .where((i) => i < correctAnswers.length && selectedAnswers[i] == correctAnswers[i])
+      .length;
 
     return Container(
         padding: const EdgeInsets.all(40),
