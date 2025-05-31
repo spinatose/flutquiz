@@ -36,11 +36,13 @@ class _QuizWrapperState extends State<QuizWrapper> {
   Widget getActiveScreen() {
     switch (activeScreen) {
       case QuizScreen.splash:
+        selectedAnswers.clear(); // Reset selected answers when starting a new quiz
         return SplashScreen(setScreen);
       case QuizScreen.questions:
         return QuestionsScreen(setScreen, chooseAnswer);
       case QuizScreen.results:
-        return ResultsScreen(setScreen);
+        final List<String> correctAnswers = questions.map((q) => q.correctAnswer).toList();
+        return ResultsScreen(setScreen, selectedAnswers, correctAnswers);
     }
   }
 
@@ -48,9 +50,9 @@ class _QuizWrapperState extends State<QuizWrapper> {
     selectedAnswers.add(answer);
 
     if (selectedAnswers.length == questions.length) {
+      
       // All questions answered, reset for next round
       setState(() {
-        selectedAnswers.clear();
         activeScreen = QuizScreen.results;
       });
     }
