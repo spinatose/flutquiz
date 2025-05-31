@@ -3,5 +3,6 @@
         "activityBar.background": "#0E276E",
         "titleBar.activeBackground": "#13379A",
         "titleBar.activeForeground": "#FAFBFE"
-    }
+    },
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

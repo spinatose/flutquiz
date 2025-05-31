@@ -1,0 +1,58 @@
+import 'package:flutquiz/centered_text.dart';
+import 'package:flutquiz/quiz_wrapper.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+class ResultsScreen extends StatelessWidget {
+  const ResultsScreen(this.setScreen, {super.key});
+
+  final void Function(QuizScreen) setScreen;
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        CenteredText(
+          'You have completed your quiz!',
+          style: GoogleFonts.aBeeZee(
+            color: Color.fromARGB(255, 233, 147, 187),
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 10),
+        OutlinedButton.icon(
+          onPressed: () {
+            setScreen(QuizScreen.splash);
+          },
+          style: OutlinedButton.styleFrom(
+            foregroundColor: const Color.fromARGB(255, 240, 237, 238),
+            side: const BorderSide(
+              color: Color.fromARGB(255, 41, 4, 100),
+              width: 2,
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.zero,
+            ),
+          ),
+          icon: Icon(
+            Icons.arrow_right_alt,
+            size: 24,
+            color: const Color.fromARGB(255, 240, 237, 238),
+          ),
+          label: const Text(
+            "Restart Quiz",
+            style: TextStyle(
+              color: Color.fromARGB(255, 240, 237, 238),
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}

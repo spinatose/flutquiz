@@ -1,8 +1,10 @@
+import 'package:flutquiz/models/data/questions.dart';
 import 'package:flutquiz/questions_screen.dart';
+import 'package:flutquiz/results_screen.dart';
 import 'package:flutquiz/splash_screen.dart';
 import 'package:flutter/material.dart';
 
-enum QuizScreen { splash, questions }
+enum QuizScreen { splash, questions, results }
 
 class QuizWrapper extends StatefulWidget {
   final List<Color> gradientColors;
@@ -27,14 +29,31 @@ class _QuizWrapperState extends State<QuizWrapper> {
           end: Alignment.bottomRight,
         ),
       ),
-      child: Center(child: (activeScreen == QuizScreen.questions)
-          ? QuestionsScreen(setScreen, chooseAnswer)
-          : SplashScreen(setScreen)),
+      child: Center(child: getActiveScreen()),
     );
+  }
+
+  Widget getActiveScreen() {
+    switch (activeScreen) {
+      case QuizScreen.splash:
+        return SplashScreen(setScreen);
+      case QuizScreen.questions:
+        return QuestionsScreen(setScreen, chooseAnswer);
+      case QuizScreen.results:
+        return ResultsScreen(setScreen);
+    }
   }
 
   void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
+
+    if (selectedAnswers.length == questions.length) {
+      // All questions answered, reset for next round
+      setState(() {
+        selectedAnswers.clear();
+        activeScreen = QuizScreen.results;
+      });
+    }
   }
 
   void setScreen(QuizScreen whichScreen) {
@@ -43,6 +62,8 @@ class _QuizWrapperState extends State<QuizWrapper> {
         activeScreen = QuizScreen.questions;
       } else if (whichScreen == QuizScreen.splash) {
         activeScreen = QuizScreen.splash;
+      } else if (whichScreen == QuizScreen.results) {
+        activeScreen = QuizScreen.results;
       }
     });
   }
