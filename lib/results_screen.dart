@@ -1,4 +1,5 @@
 import 'package:flutquiz/centered_text.dart';
+import 'package:flutquiz/models/data/questions.dart';
 import 'package:flutquiz/quiz_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -39,9 +40,35 @@ class ResultsScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-
-
           const SizedBox(height: 30),
+
+          
+          Expanded(
+            child: ListView.builder(
+              itemCount: selectedAnswers.length,
+              itemBuilder: (context, index) {
+                final question = questions[index];
+                final selectedAnswer = selectedAnswers[index];
+                final correctAnswer = question.correctAnswer;
+                final isCorrect = selectedAnswer == correctAnswer;
+
+                return ListTile(
+                  title: Text(question.text, style: GoogleFonts.aBeeZee(
+                    color: Color.fromARGB(255, 233, 147, 187),
+                    fontSize: 16,
+                  )),
+                  subtitle: Text('Your answer: $selectedAnswer\nCorrect answer: $correctAnswer',
+                    style: GoogleFonts.aBeeZee(
+                      color: isCorrect ? Colors.green : Colors.red,
+                      fontSize: 14,
+                    )),
+                );
+              },
+            ),
+          ),
+
+
+
           OutlinedButton.icon(
             onPressed: () {
               setScreen(QuizScreen.splash);
@@ -74,5 +101,19 @@ class ResultsScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  List<Map<String, Object>> getSummaryData(){
+    List<Map<String, Object>> summaryData = [];
+    for (int i = 0; i < selectedAnswers.length; i++) {
+      summaryData.add({
+        'question_index': i, 
+        'question': questions[i],
+        'selectedAnswer': selectedAnswers[i],
+        'correctAnswer': questions[i].correctAnswer,
+        'isCorrect': selectedAnswers[i] == correctAnswers[i],
+      });
+    }
+    return summaryData;
   }
 }
