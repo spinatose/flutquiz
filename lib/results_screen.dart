@@ -1,5 +1,6 @@
 import 'package:flutquiz/centered_text.dart';
 import 'package:flutquiz/models/data/questions.dart';
+import 'package:flutquiz/questions_summary.dart';
 import 'package:flutquiz/quiz_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,7 +24,7 @@ class ResultsScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CenteredText(
-            'You anaswered $correctCount out of ${correctAnswers.length} questions correctly!',
+            'You answered $correctCount out of ${correctAnswers.length} questions correctly!',
             style: GoogleFonts.aBeeZee(
               color: Color.fromARGB(255, 233, 147, 187),
               fontSize: 18,
@@ -41,34 +42,7 @@ class ResultsScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 30),
-
-          
-          Expanded(
-            child: ListView.builder(
-              itemCount: selectedAnswers.length,
-              itemBuilder: (context, index) {
-                final question = questions[index];
-                final selectedAnswer = selectedAnswers[index];
-                final correctAnswer = question.correctAnswer;
-                final isCorrect = selectedAnswer == correctAnswer;
-
-                return ListTile(
-                  title: Text(question.text, style: GoogleFonts.aBeeZee(
-                    color: Color.fromARGB(255, 233, 147, 187),
-                    fontSize: 16,
-                  )),
-                  subtitle: Text('Your answer: $selectedAnswer\nCorrect answer: $correctAnswer',
-                    style: GoogleFonts.aBeeZee(
-                      color: isCorrect ? Colors.green : Colors.red,
-                      fontSize: 14,
-                    )),
-                );
-              },
-            ),
-          ),
-
-
-
+          QuestionsSummary(summaryData: getSummaryData()),
           OutlinedButton.icon(
             onPressed: () {
               setScreen(QuizScreen.splash);
