@@ -81,8 +81,8 @@ class ResultsScreen extends StatelessWidget {
     List<Map<String, Object>> summaryData = [];
     for (int i = 0; i < selectedAnswers.length; i++) {
       summaryData.add({
-        'question_index': i, 
-        'question': questions[i],
+        'questionIndex': i, 
+        'question': questions[i].text,
         'selectedAnswer': selectedAnswers[i],
         'correctAnswer': questions[i].correctAnswer,
         'isCorrect': selectedAnswers[i] == correctAnswers[i],
