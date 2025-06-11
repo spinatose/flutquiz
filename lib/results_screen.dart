@@ -14,8 +14,9 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int correctCount = List.generate(selectedAnswers.length, (i) => i)
-      .where((i) => i < correctAnswers.length && selectedAnswers[i] == correctAnswers[i])
+    final List<Map<String, Object>> summaryData = getSummaryData();
+    final int correctCount = summaryData
+      .where((data) => data['isCorrect'] as bool)
       .length;
 
     return Container(
@@ -24,7 +25,7 @@ class ResultsScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CenteredText(
-            'You answered $correctCount out of ${correctAnswers.length} questions correctly!',
+            'You answered $correctCount out of ${questions.length} questions correctly!',
             style: GoogleFonts.aBeeZee(
               color: Color.fromARGB(255, 233, 147, 187),
               fontSize: 18,
@@ -32,7 +33,6 @@ class ResultsScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 30),
-
           CenteredText(
             'List of questions and answers...',
             style: GoogleFonts.aBeeZee(
@@ -42,7 +42,8 @@ class ResultsScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 30),
-          QuestionsSummary(summaryData: getSummaryData()),
+          QuestionsSummary(summaryData: summaryData),
+          const SizedBox(height: 15),
           OutlinedButton.icon(
             onPressed: () {
               setScreen(QuizScreen.splash);
