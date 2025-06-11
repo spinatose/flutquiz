@@ -1,6 +1,6 @@
 import 'package:flutquiz/centered_text.dart';
 import 'package:flutquiz/models/data/questions.dart';
-import 'package:flutquiz/questions_summary.dart';
+import 'package:flutquiz/questions_summary/questions_summary.dart';
 import 'package:flutquiz/quiz_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,10 +20,11 @@ class ResultsScreen extends StatelessWidget {
       .length;
 
     return Container(
-        padding: const EdgeInsets.all(40),
+        padding: const EdgeInsets.all(30),
         child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const SizedBox(height: 30),
           CenteredText(
             'You answered $correctCount out of ${questions.length} questions correctly!',
             style: GoogleFonts.aBeeZee(
@@ -32,7 +33,7 @@ class ResultsScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 20),
           CenteredText(
             'List of questions and answers...',
             style: GoogleFonts.aBeeZee(
@@ -41,7 +42,7 @@ class ResultsScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 10),
           QuestionsSummary(summaryData: summaryData),
           const SizedBox(height: 15),
           OutlinedButton.icon(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'question_identifier.dart';
 
 class QuestionsSummary extends StatelessWidget {
   const QuestionsSummary({super.key, required this.summaryData});
@@ -20,12 +21,9 @@ class QuestionsSummary extends StatelessWidget {
           return ListTile(
             title: Row(
               children: [
-                Text(
-                  '${index + 1}. ',
-                  style: GoogleFonts.aBeeZee(
-                    color: const Color.fromARGB(255, 17, 147, 223),
-                    fontWeight: FontWeight.bold,
-                  ), 
+                QuestionIdentifier(
+                  questionIndex: index,
+                  isCorrect: isCorrect,
                 ),
                 Expanded(
                   child: Text(
