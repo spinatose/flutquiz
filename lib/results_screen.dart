@@ -34,15 +34,6 @@ class ResultsScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          CenteredText(
-            'List of questions and answers...',
-            style: GoogleFonts.aBeeZee(
-              color: Color.fromARGB(255, 233, 147, 187),
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 10),
           QuestionsSummary(summaryData: summaryData),
           const SizedBox(height: 15),
           OutlinedButton.icon(
@@ -61,7 +52,7 @@ class ResultsScreen extends StatelessWidget {
               ),
             ),
             icon: Icon(
-              Icons.arrow_right_alt,
+              Icons.refresh,
               size: 24,
               color: const Color.fromARGB(255, 240, 237, 238),
             ),

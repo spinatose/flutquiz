@@ -20,6 +20,7 @@ class QuestionsSummary extends StatelessWidget {
 
           return ListTile(
             title: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 QuestionIdentifier(
                   questionIndex: index,
